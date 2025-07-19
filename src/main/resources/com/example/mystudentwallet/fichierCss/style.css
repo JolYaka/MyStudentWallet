@@ -1,0 +1,476 @@
+/* =====================================
+   CSS COMPLET - APPLICATION BUDGET JAVAFX
+   Toutes les classes utilisées dans le guide Scene Builder
+   ===================================== */
+
+/* =====================================
+   CONTENEURS PRINCIPAUX
+   ===================================== */
+
+   .main-container {
+    -fx-background-color: linear-gradient(to bottom right, #667eea, #764ba2);
+    -fx-min-height: 600; /* Correction: remplace 100vh par une valeur en pixels */
+}
+
+.content-area {
+    -fx-background-color: transparent;
+    -fx-padding: 20;
+}
+
+.dashboard {
+    -fx-background-color: linear-gradient(to bottom right, #f5f7fa, #c3cfe2);
+    -fx-background-radius: 15;
+    -fx-padding: 20;
+}
+
+.form-container {
+    -fx-background-color: linear-gradient(to bottom right, #f5f7fa, #c3cfe2);
+    -fx-background-radius: 15;
+    -fx-padding: 30;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 15, 0.0, 0, 5);
+}
+
+/* =====================================
+   NAVIGATION
+   ===================================== */
+
+.navigation-bar {
+    -fx-background-color: rgba(255,255,255,0.1);
+    -fx-padding: 15 20;
+    -fx-spacing: 15;
+    -fx-background-radius: 0 0 20 20;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0.0, 0, 2);
+}
+
+.navigation-bar Button {
+    -fx-background-color: rgba(255,255,255,0.2);
+    -fx-text-fill: white;
+    -fx-padding: 12 25;
+    -fx-background-radius: 25;
+    -fx-font-size: 14px;
+    -fx-font-weight: 600;
+    -fx-cursor: hand;
+    -fx-border-color: rgba(255,255,255,0.3);
+    -fx-border-width: 1;
+    -fx-border-radius: 25;
+}
+
+.navigation-bar Button:hover {
+    -fx-background-color: rgba(255,255,255,0.3);
+    -fx-effect: dropshadow(gaussian, rgba(255,255,255,0.3), 10, 0.0, 0, 0);
+    -fx-scale-y: 1.05;
+    -fx-scale-x: 1.05;
+}
+
+.navigation-bar Button:pressed {
+    -fx-background-color: white;
+    -fx-text-fill: #667eea;
+}
+
+/* Style pour le bouton actif */
+.nav-button-active {
+    -fx-background-color: white !important;
+    -fx-text-fill: #667eea !important;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 8, 0.0, 0, 2);
+}
+
+/* =====================================
+   CARTES ET ÉLÉMENTS PRINCIPAUX
+   ===================================== */
+
+.balance-card {
+    -fx-background-color: linear-gradient(to bottom right, #4facfe, #00f2fe);
+    -fx-background-radius: 15;
+    -fx-padding: 25;
+    -fx-effect: dropshadow(gaussian, rgba(79, 172, 254, 0.4), 15, 0.0, 0, 5);
+}
+
+.balance-card Label {
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+}
+
+.balance-amount {
+    -fx-font-size: 36px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+}
+
+.balance-title {
+    -fx-font-size: 18px;
+    -fx-text-fill: rgba(255,255,255,0.9);
+    -fx-font-weight: 500;
+}
+
+.balance-subtitle {
+    -fx-font-size: 14px;
+    -fx-text-fill: rgba(255,255,255,0.8);
+    -fx-font-style: italic;
+}
+
+.stat-card {
+    -fx-background-color: white;
+    -fx-background-radius: 12;
+    -fx-padding: 20;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0.0, 0, 3);
+    -fx-alignment: center;
+}
+
+.stat-value {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+}
+
+.stat-label {
+    -fx-font-size: 14px;
+    -fx-text-fill: #6c757d;
+    -fx-font-weight: 500;
+}
+
+/* =====================================
+   COULEURS POUR LES MONTANTS
+   ===================================== */
+
+.income {
+    -fx-text-fill: #27ae60;
+}
+
+.expense {
+    -fx-text-fill: #e74c3c;
+}
+
+.neutral {
+    -fx-text-fill: #6c757d;
+}
+
+.positive {
+    -fx-text-fill: #27ae60;
+}
+
+.negative {
+    -fx-text-fill: #e74c3c;
+}
+
+/* =====================================
+   FORMULAIRES
+   ===================================== */
+
+.form-input {
+    -fx-background-radius: 10;
+    -fx-border-color: #e0e0e0;
+    -fx-border-radius: 10;
+    -fx-border-width: 2;
+    -fx-padding: 12 15;
+    -fx-font-size: 16px;
+    -fx-background-color: white;
+}
+
+.form-input:focused {
+    -fx-border-color: #4facfe;
+    -fx-effect: dropshadow(gaussian, rgba(79, 172, 254, 0.3), 8, 0.0, 0, 0);
+}
+
+.form-label {
+    -fx-font-size: 16px;
+    -fx-font-weight: 600;
+    -fx-text-fill: #495057;
+}
+
+/* =====================================
+   BOUTONS
+   ===================================== */
+
+.btn-primary {
+    -fx-background-color: linear-gradient(to bottom right, #667eea, #764ba2);
+    -fx-text-fill: white;
+    -fx-background-radius: 10;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-padding: 15 30;
+    -fx-cursor: hand;
+    -fx-border-width: 0;
+}
+
+.btn-primary:hover {
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0.0, 0, 2);
+    -fx-scale-y: 1.02;
+    -fx-scale-x: 1.02;
+}
+
+.btn-primary:pressed {
+    -fx-scale-y: 0.98;
+    -fx-scale-x: 0.98;
+}
+
+.btn-secondary {
+    -fx-background-color: #6c757d;
+    -fx-text-fill: white;
+    -fx-background-radius: 8;
+    -fx-font-size: 14px;
+    -fx-font-weight: 600;
+    -fx-padding: 10 20;
+    -fx-cursor: hand;
+}
+
+.btn-secondary:hover {
+    -fx-background-color: #5a6268;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 8, 0.0, 0, 2);
+}
+
+/* =====================================
+   TRANSACTIONS
+   ===================================== */
+
+.transaction-item {
+    -fx-background-color: #f8f9fa;
+    -fx-background-radius: 10;
+    -fx-border-color: #4facfe;
+    -fx-border-width: 0 0 0 4;
+    -fx-padding: 15;
+    -fx-spacing: 15;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.05), 5, 0.0, 0, 2);
+}
+
+.transaction-item:hover {
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0.0, 0, 3);
+    -fx-translate-x: 5;
+    -fx-background-color: #ffffff;
+}
+
+.transaction-title {
+    -fx-font-size: 16px;
+    -fx-font-weight: 600;
+    -fx-text-fill: #212529;
+}
+
+.transaction-date {
+    -fx-font-size: 12px;
+    -fx-text-fill: #6c757d;
+    -fx-font-style: italic;
+}
+
+.transaction-amount {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+}
+
+/* Couleurs spécifiques pour les transactions */
+.transaction-item.income {
+    -fx-border-color: #27ae60;
+}
+
+.transaction-item.expense {
+    -fx-border-color: #e74c3c;
+}
+
+.transaction-item.neutral {
+    -fx-border-color: #6c757d;
+}
+
+/* =====================================
+   GRAPHIQUES ET LÉGENDES
+   ===================================== */
+
+.chart-container {
+    -fx-background-color: linear-gradient(to bottom right, #f5f7fa, #c3cfe2);
+    -fx-background-radius: 15;
+    -fx-padding: 30;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 15, 0.0, 0, 5);
+}
+
+.chart-title {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #495057;
+    -fx-padding: 0 0 20 0;
+}
+
+.legend-item {
+    -fx-spacing: 10;
+    -fx-alignment: center-left;
+    -fx-padding: 5;
+}
+
+.legend-color {
+    -fx-stroke: transparent;
+}
+
+.legend-color.blue {
+    -fx-fill: #4facfe;
+}
+
+.legend-color.red {
+    -fx-fill: #e74c3c;
+}
+
+.legend-color.orange {
+    -fx-fill: #f39c12;
+}
+
+.legend-color.green {
+    -fx-fill: #27ae60;
+}
+
+.legend-color.purple {
+    -fx-fill: #9b59b6;
+}
+
+.legend-color.yellow {
+    -fx-fill: #f1c40f;
+}
+
+.legend-label {
+    -fx-font-size: 14px;
+    -fx-text-fill: #495057;
+    -fx-font-weight: 500;
+}
+
+/* =====================================
+   TITRES ET TEXTES
+   ===================================== */
+
+.page-title {
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #495057;
+    -fx-padding: 0 0 20 0;
+}
+
+.section-title {
+    -fx-font-size: 20px;
+    -fx-font-weight: 600;
+    -fx-text-fill: #495057;
+    -fx-padding: 10 0;
+}
+
+.subtitle {
+    -fx-font-size: 16px;
+    -fx-text-fill: #6c757d;
+    -fx-font-weight: 500;
+}
+
+.description-text {
+    -fx-font-size: 14px;
+    -fx-text-fill: #6c757d;
+    -fx-wrap-text: true;
+}
+
+/* =====================================
+   ÉTATS ET ANIMATIONS
+   ===================================== */
+
+.loading {
+    -fx-opacity: 0.6;
+}
+
+.disabled {
+    -fx-opacity: 0.5;
+}
+
+.highlighted {
+    -fx-effect: dropshadow(gaussian, rgba(79, 172, 254, 0.6), 15, 0.0, 0, 0);
+}
+
+.success {
+    -fx-border-color: #27ae60;
+    -fx-background-color: rgba(39, 174, 96, 0.1);
+}
+
+.error {
+    -fx-border-color: #e74c3c;
+    -fx-background-color: rgba(231, 76, 60, 0.1);
+}
+
+.warning {
+    -fx-border-color: #f39c12;
+    -fx-background-color: rgba(243, 156, 18, 0.1);
+}
+
+/* =====================================
+   RESPONSIVE - AJUSTEMENTS DE TAILLE
+   ===================================== */
+
+.small-screen {
+    -fx-padding: 10;
+}
+
+.small-screen .balance-card {
+    -fx-padding: 15;
+}
+
+.small-screen .balance-amount {
+    -fx-font-size: 28px;
+}
+
+.small-screen .stat-card {
+    -fx-padding: 15;
+}
+
+.small-screen .transaction-item {
+    -fx-padding: 10;
+}
+
+/* =====================================
+   SCROLLBARS
+   ===================================== */
+
+.scroll-pane {
+    -fx-background-color: transparent;
+}
+
+.scroll-pane .viewport {
+    -fx-background-color: transparent;
+}
+
+.scroll-pane .corner {
+    -fx-background-color: transparent;
+}
+
+.scroll-bar:vertical {
+    -fx-background-color: transparent;
+    -fx-pref-width: 8px;
+}
+
+.scroll-bar:horizontal {
+    -fx-background-color: transparent;
+    -fx-pref-height: 8px;
+}
+
+.scroll-bar .thumb {
+    -fx-background-color: rgba(0,0,0,0.3);
+    -fx-background-radius: 4px;
+}
+
+.scroll-bar .thumb:hover {
+    -fx-background-color: rgba(0,0,0,0.5);
+}
+
+/* =====================================
+   TABLES (si vous utilisez TableView)
+   ===================================== */
+
+.table-view {
+    -fx-background-color: white;
+    -fx-background-radius: 10;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0.0, 0, 3);
+}
+
+.table-view .column-header {
+    -fx-background-color: #f8f9fa;
+    -fx-font-weight: bold;
+    -fx-text-fill: #495057;
+    -fx-padding: 15 10;
+}
+
+.table-view .table-row-cell {
+    -fx-background-color: white;
+    -fx-padding: 10;
+}
+
+.table-view .table-row-cell:hover {
+    -fx-background-color: #f8f9fa;
+}
+
+.table-view .table-row-cell:selected {
+    -fx-background-color: rgba(79, 172, 254, 0.2);
+}
