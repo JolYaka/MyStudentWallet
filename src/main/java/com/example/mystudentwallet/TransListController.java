@@ -11,23 +11,23 @@ import java.util.ResourceBundle;
 public class TransListController implements Initializable {
     @FXML
     Label descriptionLabel1,descriptionLabel2,descriptionLabel3,descriptionLabel4,dateLabel1,dateLabel2,dateLabel3,dateLabel4,amountLabel1,amountLabel2,amountLabel3,amountLabel4;
+    Label [] desTab;
+    Label [] dateTab;
+    Label [] amountTab;
     public void initialize (URL location, ResourceBundle resource ){
+        desTab=new Label[]{descriptionLabel1,descriptionLabel2,descriptionLabel3,descriptionLabel4};
+        dateTab= new Label[]{dateLabel1,dateLabel2,dateLabel3,dateLabel4};
+        amountTab=new Label[]{amountLabel1,amountLabel2,amountLabel3,amountLabel4};
         setLabel();
         sqlPart();
     }
     private void setLabel(){
-        descriptionLabel1.setText("Desciption récente");
-        descriptionLabel2.setText("Desciption récente");
-        descriptionLabel3.setText("Desciption récente");
-        descriptionLabel4.setText("Desciption récente");
-        dateLabel1.setText("XXXX-XX-XX");
-        dateLabel2.setText("XXXX-XX-XX");
-        dateLabel3.setText("XXXX-XX-XX");
-        dateLabel4.setText("XXXX-XX-XX");
-        amountLabel1.setText("XXXX");
-        amountLabel2.setText("XXXX");
-        amountLabel3.setText("XXXX");
-        amountLabel4.setText("XXXX");
+        for(Label e : desTab)
+            e.setText("Desciption récente");
+        for(Label e : dateTab)
+            e.setText("XXXX-XX-XX");
+        for(Label e : amountTab)
+            e.setText("XXXX");
     }
     private void sqlPart(){
         try{
@@ -36,10 +36,12 @@ public class TransListController implements Initializable {
         Connection conn = DriverManager.getConnection(url);
         PreparedStatement pstmt= conn.prepareStatement(sql);
         ResultSet rs = pstmt.executeQuery();
+        int i=0;
         while(rs.next()){
-            descriptionLabel1.setText(rs.getString("description"));
-            amountLabel1.setText(String.format("%.2f",rs.getDouble("amount")));
-            dateLabel1.setText(rs.getString("date"));
+            desTab[i].setText(rs.getString("description"));
+            amountTab[i].setText(String.format("%.2f",rs.getDouble("amount")));
+            dateTab[i].setText(rs.getString("date"));
+            i++;
         }
         }
         catch(SQLException e){
