@@ -43,6 +43,7 @@ public class TransListController implements Initializable {
             dateTab[i].setText(rs.getString("date"));
             i++;
         }
+        conn.close();
         }
         catch(SQLException e){
             System.err.println("Le message d'erreur est:"+e.getMessage());
