@@ -1,0 +1,154 @@
+# 💰 MyStudentWallet
+
+Une application moderne de gestion financière conçue spécifiquement pour les étudiants, développée en JavaFX avec une interface utilisateur intuitive et élégante.
+
+![JavaFX](https://img.shields.io/badge/JavaFX-ED8B00?style=for-the-badge&logo=java&logoColor=white)
+![SQLite](https://img.shields.io/badge/SQLite-07405E?style=for-the-badge&logo=sqlite&logoColor=white)
+![Maven](https://img.shields.io/badge/Apache%20Maven-C71A36?style=for-the-badge&logo=Apache%20Maven&logoColor=white)
+
+## 📋 À propos du projet
+
+MyStudentWallet est une solution complète pour aider les étudiants à gérer leurs finances personnelles. L'application offre une interface moderne et conviviale pour suivre les revenus, dépenses, et analyser les habitudes financières.
+
+### ✨ Fonctionnalités principales
+
+- **💳 Gestion des transactions** - Ajout, modification et suppression de revenus et dépenses
+- **📊 Tableau de bord interactif** - Vue d'ensemble des finances avec graphiques
+- **📈 Analyses financières** - Suivi des tendances et statistiques détaillées
+- **👤 Profil utilisateur** - Gestion personnalisée du compte
+- **🎯 Interface moderne** - Design épuré et responsive avec JavaFX
+- **💾 Base de données locale** - Stockage sécurisé avec SQLite
+
+## 🛠️ Technologies utilisées
+
+- **Frontend** : JavaFX avec FXML
+- **Base de données** : SQLite
+- **Build tool** : Maven
+- **Architecture** : MVC (Model-View-Controller)
+- **Styling** : CSS personnalisé
+- **IDE** : IntelliJ IDEA
+
+## 🚀 Installation et exécution
+
+### Prérequis
+- Java JDK 11 ou supérieur
+- Maven 3.6+
+
+### Étapes d'installation
+
+1. **Cloner le repository**
+   ```bash
+   git clone https://github.com/JolYaka/MyStudentWallet.git
+   cd MyStudentWallet
+   ```
+
+2. **Installer les dépendances**
+   ```bash
+   mvn clean install
+   ```
+
+3. **Exécuter l'application**
+   ```bash
+   mvn javafx:run
+   ```
+
+   Ou directement avec Java :
+   ```bash
+   java -cp target/classes com.example.mystudentwalletfinal.AppMain
+   ```
+
+## 📁 Structure du projet
+
+```
+MyStudentWallet/
+├── src/main/java/com/example/mystudentwalletfinal/
+│   ├── AppMain.java                 # Point d'entrée de l'application
+│   ├── AddTransController.java      # Contrôleur ajout de transactions
+│   ├── DashboardController.java     # Contrôleur tableau de bord
+│   ├── MainController.java          # Contrôleur principal
+│   └── ProfitController.java        # Contrôleur analyse des profits
+├── src/main/resources/
+│   ├── com/example/mystudentwalletfinal/
+│   │   ├── interfaceGraph/          # Fichiers FXML des interfaces
+│   │   └── imageIcon/               # Ressources graphiques
+│   └── FichierCss/
+│       └── style.css                # Styles CSS personnalisés
+├── MyStudentWalletBD.db            # Base de données SQLite
+└── pom.xml                         # Configuration Maven
+```
+
+## 🎯 Fonctionnalités détaillées
+
+### Dashboard principal
+- Vue d'ensemble des finances
+- Graphiques interactifs des revenus/dépenses
+- Statistiques en temps réel
+
+### Gestion des transactions
+- Interface intuitive d'ajout de transactions
+- Catégorisation automatique
+- Historique complet des opérations
+
+### Analyses et rapports
+- Graphiques de tendances
+- Analyse des habitudes de dépenses
+- Rapports mensuels et annuels
+
+## 🔧 Configuration de la base de données
+
+L'application utilise SQLite pour le stockage local des données. La base de données est automatiquement créée au premier lancement de l'application.
+
+**Tables principales :**
+- `transactions` - Stockage des revenus et dépenses
+- `categories` - Catégories de transactions
+- `users` - Informations utilisateur
+
+## 🎨 Interface utilisateur
+
+L'interface a été conçue avec une attention particulière portée à l'expérience utilisateur :
+- Design moderne et épuré
+- Navigation intuitive
+- Graphiques interactifs
+- Responsive design
+- Thème sombre/clair
+
+## 📸 Captures d'écran
+
+*[Vous pouvez ajouter des captures d'écran de votre application ici]*
+
+## 🚀 Améliorations futures
+
+- [ ] Mode sombre/clair
+- [ ] Export des données (PDF, Excel)
+- [ ] Synchronisation cloud
+- [ ] Application mobile companion
+- [ ] Notifications et rappels
+- [ ] Support multi-devises
+
+## 🤝 Contribution
+
+Les contributions sont les bienvenues ! Si vous souhaitez contribuer :
+
+1. Fork le projet
+2. Créez une branche pour votre fonctionnalité (`git checkout -b feature/AmazingFeature`)
+3. Committez vos changements (`git commit -m 'Add some AmazingFeature'`)
+4. Push vers la branche (`git push origin feature/AmazingFeature`)
+5. Ouvrez une Pull Request
+
+## 📝 Licence
+
+Ce projet est sous licence MIT. Voir le fichier `LICENSE` pour plus de détails.
+
+## 👨‍💻 Auteur
+
+**JolYaka**
+- GitHub: [@JolYaka](https://github.com/JolYaka)
+- Projet: [MyStudentWallet](https://github.com/JolYaka/MyStudentWallet)
+
+---
+
+⭐ Si ce projet vous a aidé, n'hésitez pas à lui donner une étoile !
+
+---
+
+*Développé avec ❤️ pour aider les étudiants à mieux gérer leurs finances*
