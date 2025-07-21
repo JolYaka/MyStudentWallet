@@ -17,6 +17,7 @@ public class AddTransController implements Initializable {
     private TextField descriptionText, montantText;
     @FXML
     private Button saveBtn;
+    MainController mainController;
 
     private static final String DB_URL = "jdbc:sqlite:src/main/resources/com/example/mystudentwallet/myStudentWalletBD.db";
 
@@ -37,6 +38,7 @@ public class AddTransController implements Initializable {
         saveBtn.setOnAction(e -> {
             if (validateInputs()) {
                 saveTransaction();
+                mainController.navigateToDashboard();
             }
         });
     }
@@ -125,5 +127,8 @@ public class AddTransController implements Initializable {
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
+    }
+    public void setMainController(MainController m){
+        this.mainController=m;
     }
 }

@@ -54,8 +54,16 @@ public class MainController implements Initializable {
       }
    }
    private void loadAddTrans(){
-      Node inter = loadFile("/com/example/mystudentwallet/interfaceGraph/Add-transaction.fxml");
+      try{
+      FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/mystudentwallet/interfaceGraph/Add-transaction.fxml"));
+      Node inter = loader.load();
+      AddTransController addTransController = loader.getController();
+      addTransController.setMainController(this);
       setContentArea(inter);
+      }
+      catch (IOException e){
+         throw new RuntimeException(e);
+      }
    }
    private void loadTransList(){
       Node inter = loadFile("/com/example/mystudentwallet/interfaceGraph/Transactions-List.fxml");
@@ -68,6 +76,10 @@ public class MainController implements Initializable {
    public void navigateToAddTransaction() {
       loadAddTrans();
       setActiveButton(btnAdd);
+   }
+   public void navigateToDashboard(){
+      loadDashboard();
+      setActiveButton(btnDashboard);
    }
    private Node loadFile(String path){
       try {
