@@ -17,12 +17,12 @@
          <children>
             <VBox prefHeight="70.0" prefWidth="250.0" spacing="5.0">
                <children>
-                  <Label fx:id="descriptionLabel1" prefHeight="25.0" prefWidth="250.0" text="Courses alimentaires">
+                  <Label fx:id="descriptionLabel1" prefHeight="25.0" prefWidth="250.0" styleClass="transaction-title" text="Courses alimentaires">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
-                  <Label fx:id="dateLabel1" prefHeight="20.0" prefWidth="250.0" text="15/01/2025">
+                  <Label fx:id="dateLabel1" prefHeight="20.0" prefWidth="250.0" styleClass="transaction-date" text="15/01/2025">
                      <font>
                         <Font size="12.0" />
                      </font>
@@ -44,12 +44,12 @@
          <children>
             <VBox prefHeight="70.0" prefWidth="250.0" spacing="5.0">
                <children>
-                  <Label fx:id="descriptionLabel2" prefHeight="25.0" prefWidth="250.0" text="Salaire janvier">
+                  <Label fx:id="descriptionLabel2" prefHeight="25.0" prefWidth="250.0" styleClass="transaction-title" text="Salaire janvier">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
-                  <Label fx:id="dateLabel2" prefHeight="20.0" prefWidth="250.0" text="01/01/2025">
+                  <Label fx:id="dateLabel2" prefHeight="20.0" prefWidth="250.0" styleClass="transaction-date" text="01/01/2025">
                      <font>
                         <Font size="12.0" />
                      </font>
@@ -58,7 +58,7 @@
             </VBox>
             <Label fx:id="amountLabel2" alignment="CENTER_RIGHT" prefHeight="54.0" prefWidth="331.0" text="+1200.00 DT">
                <styleClass>
-                  <String fx:value="income" />
+                  <String fx:value="expense" />
                   <String fx:value="balance-amount" />
                </styleClass>
                <font>
@@ -71,12 +71,12 @@
          <children>
             <VBox prefHeight="70.0" prefWidth="250.0" spacing="5.0">
                <children>
-                  <Label fx:id="descriptionLabel3" prefHeight="25.0" prefWidth="250.0" text="Transport bus">
+                  <Label fx:id="descriptionLabel3" prefHeight="25.0" prefWidth="250.0" styleClass="transaction-title" text="Transport bus">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
-                  <Label fx:id="dateLabel3" prefHeight="20.0" prefWidth="250.0" text="12/01/2025">
+                  <Label fx:id="dateLabel3" prefHeight="20.0" prefWidth="250.0" styleClass="transaction-date" text="12/01/2025">
                      <font>
                         <Font size="12.0" />
                      </font>
@@ -98,12 +98,12 @@
          <children>
             <VBox prefHeight="70.0" prefWidth="250.0" spacing="5.0">
                <children>
-                  <Label fx:id="descriptionLabel4" prefHeight="25.0" prefWidth="250.0" text="Café université">
+                  <Label fx:id="descriptionLabel4" prefHeight="25.0" prefWidth="250.0" styleClass="transaction-title" text="Café université">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
-                  <Label fx:id="dateLabel4" prefHeight="20.0" prefWidth="250.0" text="10/01/2025">
+                  <Label fx:id="dateLabel4" prefHeight="20.0" prefWidth="250.0" styleClass="transaction-date" text="10/01/2025">
                      <font>
                         <Font size="12.0" />
                      </font>

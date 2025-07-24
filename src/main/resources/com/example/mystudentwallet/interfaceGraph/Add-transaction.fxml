@@ -10,7 +10,7 @@
 
 <VBox fx:id="addTransactionRoot" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="400.0" spacing="25.0" styleClass="dashboard" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.mystudentwallet.AddTransController">
    <children>
-      <Label stylesheets="@style.css" text="➕Ajouter une Transaction">
+      <Label  text="➕Ajouter une Transaction">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
@@ -32,7 +32,7 @@
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
-            <TextField fx:id="montantText" prefHeight="40.0" styleClass="form-input" stylesheets="@style.css" text="0.00" />
+            <TextField fx:id="montantText" prefHeight="40.0" styleClass="form-input" text="0.00" />
          </children>
       </VBox>
       <VBox prefHeight="80.0" prefWidth="360.0" spacing="8.0">
@@ -45,10 +45,10 @@
             <ComboBox fx:id="categorieBox" prefHeight="40.0" prefWidth="360.0" promptText="Alimentation" styleClass="form-input" />
          </children>
       </VBox>
-      <Button fx:id="saveBtn" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" styleClass="btn-primary" stylesheets="@style.css" text="💾 Enregistrer" />
+      <Button fx:id="saveBtn" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" styleClass="btn-primary"  text="💾 Enregistrer" />
    </children>
    <stylesheets>
-      <URL value="@style.css" />
+
       <URL value="@../fichierCss/style.css" />
    </stylesheets>
 </VBox>

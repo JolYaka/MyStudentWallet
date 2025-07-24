@@ -51,9 +51,9 @@ public class DashboardController implements Initializable{
             PreparedStatement pstmtDate = conn.prepareStatement(sqlDate);
             ResultSet rsDate = pstmtDate.executeQuery();
             if (rsIn.next()) {
-                double income = rsIn.getDouble("income");
+                revenuActuel = rsIn.getDouble("income");
                 if (!rsIn.wasNull()) {
-                    labelRevenu.setText(String.format("%.2f",income));
+                    labelRevenu.setText(String.format("%.2f",revenuActuel));
                 } else {
                     labelRevenu.setText("0.00");
                 }
@@ -63,14 +63,12 @@ public class DashboardController implements Initializable{
                 if(!rsEx.wasNull())
                     labelDepense.setText(String.format("%.2f",depenseActuel));
                 else
+
                     labelDepense.setText("0.00");
             }
             if(rsSolde.next()){
-                soldeActuel = rsSolde.getDouble("solde");
-                if(!rsSolde.wasNull())
-                    labelSolde.setText(String.format("%.2f",soldeActuel));
-                else
-                    labelSolde.setText("0.00");
+                soldeActuel = revenuActuel-depenseActuel;
+                labelSolde.setText(String.format("%.2f",soldeActuel));
             }
             if(rsDate.next()){
                 date=rsDate.getString("date");

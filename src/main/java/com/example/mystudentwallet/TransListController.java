@@ -32,7 +32,7 @@ public class TransListController implements Initializable {
     private void sqlPart(){
         try{
         String url = "jdbc:sqlite:src/main/resources/com/example/mystudentwallet/myStudentWalletBD.db";
-        String sql = "SELECT description,amount,date FROM Transactions ORDER BY id DESC LIMIT 4";
+        String sql = "SELECT description,amount,date,type FROM Transactions ORDER BY id DESC LIMIT 4";
         Connection conn = DriverManager.getConnection(url);
         PreparedStatement pstmt= conn.prepareStatement(sql);
         ResultSet rs = pstmt.executeQuery();
@@ -40,7 +40,16 @@ public class TransListController implements Initializable {
         while(rs.next()){
             desTab[i].setText(rs.getString("description"));
             amountTab[i].setText(String.format("%.2f",rs.getDouble("amount")));
+            if((rs.getString("type")).equals("Revenu")){
+                amountTab[i].getStyleClass().remove("expense");
+                amountTab[i].getStyleClass().add("income");
+            }
+            else{
+                amountTab[i].getStyleClass().remove("expense");
+                amountTab[i].getStyleClass().add("expense");
+            }
             dateTab[i].setText(rs.getString("date"));
+
             i++;
         }
         conn.close();
