@@ -1,0 +1,28 @@
+{
+  "name": "MyStudentWallet",
+  "short_name": "Wallet",
+  "description": "Suivi de dépenses pour étudiants : simple, hors ligne, multi-devises.",
+  "lang": "fr",
+  "start_url": "./#/accueil",
+  "scope": "./",
+  "id": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#f2f3f5",
+  "theme_color": "#f2f3f5",
+  "categories": ["finance", "productivity"],
+  "icons": [
+    { "src": "assets/icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "assets/icons/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "assets/icons/maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" },
+    { "src": "assets/icons/icon.svg", "sizes": "any", "type": "image/svg+xml" }
+  ],
+  "shortcuts": [
+    {
+      "name": "Nouvelle dépense",
+      "short_name": "Dépense",
+      "url": "./#/accueil?ajouter=1",
+      "icons": [{ "src": "assets/icons/icon-192.png", "sizes": "192x192" }]
+    }
+  ]
+}
