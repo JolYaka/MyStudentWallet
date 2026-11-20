@@ -495,9 +495,9 @@ body.fige #toast { bottom: 24px; }
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   align-items: center;
-  background: color-mix(in srgb, var(--carte) 88%, transparent);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  /* Même couleur que la bande système d'Android juste en dessous (déclarée
+     dans le manifeste) : la barre et la bande se confondent. */
+  background: var(--fond);
   border-top: 1px solid var(--trait);
 }
 .onglet {
@@ -633,6 +633,46 @@ p.ligne-reglage { cursor: default; font-size: 14px; }
 .bienvenue-haut h1 { font-size: 32px; font-weight: 800; letter-spacing: -0.035em; margin-top: 8px; }
 .bienvenue-form { display: flex; flex-direction: column; gap: 18px; }
 .restaurer-lien { align-self: center; cursor: pointer; }
+
+/* ---- Verrouillage ---------------------------------------------------------------------- */
+
+.verrou {
+  position: fixed;
+  inset: 0;
+  z-index: 48;
+  background: var(--fond);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: env(safe-area-inset-top) 16px env(safe-area-inset-bottom);
+  outline: none;
+}
+.code { width: 100%; max-width: 320px; display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.code-titre { font-size: 17px; font-weight: 800; display: flex; align-items: center; gap: 8px; text-align: center; }
+.code-sous { font-size: 14px; text-align: center; min-height: 20px; }
+.code-points { display: flex; gap: 18px; margin: 18px 0 26px; }
+.code-points i { width: 14px; height: 14px; border-radius: 50%; border: 2px solid var(--encre-3); }
+.code-points i.plein { background: var(--encre); border-color: var(--encre); }
+.code-points.secoue { animation: secoue 0.35s; }
+@keyframes secoue { 20%, 60% { transform: translateX(-8px); } 40%, 80% { transform: translateX(8px); } }
+.pave { display: grid; grid-template-columns: repeat(3, 72px); gap: 14px 26px; justify-content: center; }
+.pave button, .pave-gauche button {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 26px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+.pave > button[data-chiffre] { background: var(--carte); }
+.feuille .pave > button[data-chiffre] { background: var(--carte-2); }
+.pave button:active { background: var(--carte-2); }
+.pave button:disabled { opacity: 0.4; }
+.pave-gauche { display: grid; place-items: center; color: var(--accent-encre); }
+.code-oublie { margin-top: 22px; }
+#pave-reglage { padding: 8px 0 12px; }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition: none !important; animation: none !important; }

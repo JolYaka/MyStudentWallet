@@ -2,7 +2,7 @@
 // s'ouvre sans connexion. À chaque nouvelle version, changer VERSION : les
 // téléphones téléchargent alors les nouveaux fichiers et jettent les anciens.
 
-const VERSION = 'msw-2.0.0';
+const VERSION = 'msw-2.1.0';
 const FICHIERS = [
   './',
   'index.html',
@@ -17,6 +17,7 @@ const FICHIERS = [
   'js/icons.js',
   'js/saisie.js',
   'js/installation.js',
+  'js/verrou.js',
   'js/ecrans/commun.js',
   'js/ecrans/accueil.js',
   'js/ecrans/operations.js',

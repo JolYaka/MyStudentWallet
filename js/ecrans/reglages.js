@@ -16,15 +16,20 @@ import {
 import { icon, ICONS } from '../icons.js';
 import { TABLES } from '../db.js';
 import { installer, peutInstaller, estInstallee, consigneInstallation } from '../installation.js';
+import {
+  verrouActif, empreinteActive, empreintePossible, definirCode, verifierCode, desactiverVerrou,
+  activerEmpreinte, desactiverEmpreinte, clavierCode,
+} from '../verrou.js';
 
 const ICONES_COMPTE = ['wallet', 'banknote', 'credit-card', 'smartphone', 'landmark', 'piggy-bank', 'hand-coins'];
 const ICONES_CATEGORIE = Object.keys(ICONS).filter((n) => ![
   'house', 'list-ordered', 'plus', 'settings', 'search', 'x', 'trash-2', 'chevron-left', 'chevron-right',
   'chevron-down', 'download', 'upload', 'moon', 'sun', 'check', 'pencil', 'refresh-cw', 'sun-moon',
   'arrow-up', 'arrow-down', 'share', 'chart-column', 'arrow-left-right', 'repeat', 'calendar', 'target',
+  'lock', 'lock-open', 'fingerprint', 'delete', 'shield-check',
 ].includes(n)).concat(['house']);
 
-export const VERSION = '2.0.0';
+export const VERSION = '2.1.0';
 
 function optionsDevises(choisie) {
   const liste = [...DEVISES_COURANTES];
@@ -140,6 +145,30 @@ export function rendreReglages() {
     </section>
 
     <section class="groupe">
+      <h2 class="groupe-titre">Sécurité</h2>
+      <div class="carte liste">
+        ${verrouActif() ? `
+          <button class="ligne-reglage" data-changer-code>
+            <span class="pastille">${icon('lock', 18)}</span>
+            <span class="lr-nom">Changer le code<span class="lr-sous">L'app se verrouille après 30 s en arrière-plan</span></span>
+          </button>
+          <button class="ligne-reglage" data-empreinte hidden>
+            <span class="pastille">${icon('fingerprint', 18)}</span>
+            <span class="lr-nom">Déverrouiller avec l'empreinte</span>
+            <span class="lr-valeur">${empreinteActive() ? 'Activé' : 'Désactivé'}</span>
+          </button>
+          <button class="ligne-reglage" data-retirer-code>
+            <span class="pastille">${icon('lock-open', 18)}</span>
+            <span class="lr-nom">Retirer le verrouillage</span>
+          </button>` : `
+          <button class="ligne-reglage" data-poser-code>
+            <span class="pastille">${icon('lock', 18)}</span>
+            <span class="lr-nom">Verrouiller l'app<span class="lr-sous">Par un code à 4 chiffres, et l'empreinte si le téléphone le permet</span></span>
+          </button>`}
+      </div>
+    </section>
+
+    <section class="groupe">
       <h2 class="groupe-titre">Données</h2>
       <p class="texte-doux note-groupe">Vos données restent sur ce téléphone. Faites une sauvegarde de temps en temps : si vous effacez les données du navigateur, elles disparaissent.</p>
       <div class="carte liste">
@@ -196,6 +225,20 @@ export function brancherReglages(racine, params) {
   $('[data-csv]', racine).onclick = exporterCSV;
   $('[data-effacer]', racine).onclick = toutEffacer;
   $('[data-installer]', racine)?.addEventListener('click', proposerInstallation);
+  $('[data-poser-code]', racine)?.addEventListener('click', () => poserCode());
+  $('[data-changer-code]', racine)?.addEventListener('click', () => demanderCodeActuel('Changer le code', () => poserCode(true)));
+  $('[data-retirer-code]', racine)?.addEventListener('click', () => demanderCodeActuel('Retirer le verrouillage', async () => {
+    await desactiverVerrou();
+    toast('Verrouillage retiré');
+  }));
+  const ligneEmpreinte = $('[data-empreinte]', racine);
+  if (ligneEmpreinte) {
+    empreintePossible().then((oui) => { ligneEmpreinte.hidden = !oui; });
+    ligneEmpreinte.onclick = async () => {
+      if (empreinteActive()) { await desactiverEmpreinte(); toast('Empreinte désactivée'); return; }
+      proposerEmpreinte();
+    };
+  }
   if (params.get('section')) setTimeout(() => document.getElementById(params.get('section'))?.scrollIntoView({ block: 'center' }), 50);
 }
 
@@ -562,3 +605,62 @@ function proposerInstallation() {
   });
 }
 
+// ---- Verrouillage ------------------------------------------------------------------------
+
+// Choix du code en deux temps : saisie, puis confirmation.
+function poserCode(changement = false) {
+  const f = ouvrirFeuille({ titre: changement ? 'Nouveau code' : "Verrouiller l'app", contenu: '<div id="pave-reglage"></div>' });
+  let premier = null;
+  clavierCode($('#pave-reglage', f), {
+    titre: 'Choisissez un code à 4 chiffres',
+    sousTitre: "Il sera demandé à chaque ouverture de l'app.",
+    onCode: async (code, api) => {
+      if (!premier) {
+        premier = code;
+        api.vider();
+        api.message('Saisissez-le une seconde fois pour confirmer.');
+        return;
+      }
+      if (code !== premier) {
+        premier = null;
+        api.secouer();
+        api.message('Les deux codes ne correspondent pas. Recommencez.', true);
+        return;
+      }
+      await definirCode(code);
+      fermerFeuille();
+      toast(changement ? 'Code modifié' : 'Verrouillage activé');
+      if (!changement && await empreintePossible()) setTimeout(proposerEmpreinte, 300);
+    },
+  });
+}
+
+function demanderCodeActuel(titre, suite) {
+  const f = ouvrirFeuille({ titre, contenu: '<div id="pave-reglage"></div>' });
+  clavierCode($('#pave-reglage', f), {
+    titre: 'Saisissez votre code actuel',
+    onCode: async (code, api) => {
+      if (!(await verifierCode(code))) { api.secouer(); api.message('Code incorrect', true); return; }
+      fermerFeuille();
+      setTimeout(suite, 250);
+    },
+  });
+}
+
+function proposerEmpreinte() {
+  const f = ouvrirFeuille({
+    titre: "Déverrouiller avec l'empreinte",
+    contenu: `<p class="texte-doux">Posez votre doigt une fois pour l'enregistrer. Android peut vous proposer de créer une « clé d'accès » : acceptez, c'est le mécanisme qu'il utilise. Votre empreinte ne quitte jamais le téléphone, et le code reste utilisable à tout moment.</p>`,
+    pied: '<button class="btn btn-second" data-non>Plus tard</button><button class="btn btn-prim" data-oui>Activer</button>',
+  });
+  $('[data-non]', f).onclick = () => fermerFeuille();
+  $('[data-oui]', f).onclick = async () => {
+    try {
+      await activerEmpreinte();
+      fermerFeuille();
+      toast('Empreinte activée');
+    } catch {
+      toast("L'empreinte n'a pas été enregistrée. Vous pourrez réessayer depuis Réglages.");
+    }
+  };
+}

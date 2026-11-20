@@ -38,6 +38,7 @@ L'app s'ouvre ensuite comme une application normale, en plein écran, même en m
 
 **Données**
 - Tout reste sur le téléphone : pas de compte, pas de serveur.
+- Verrouillage par code à 4 chiffres et par empreinte digitale ; l'app se reverrouille après 30 secondes en arrière-plan. Ce verrou empêche quelqu'un d'ouvrir l'app sur votre téléphone, mais les données elles-mêmes ne sont pas chiffrées.
 - Sauvegarde et restauration dans un fichier `.json`.
 - Export CSV lisible directement par Excel ou Google Sheets.
 - Mode clair, mode sombre ou automatique.
@@ -78,6 +79,7 @@ js/
   saisie.js            La feuille d'ajout et de modification d'une opération
   ui.js                Outils d'interface : feuilles, messages, dates
   installation.js      Bouton et consignes d'installation selon le navigateur
+  verrou.js            Code, empreinte digitale (WebAuthn) et écran de verrouillage
   icons.js             Icônes Lucide intégrées (licence ISC)
   ecrans/              Un fichier par écran : accueil, operations, analyse, reglages
 assets/                Police Manrope et icônes de l'app

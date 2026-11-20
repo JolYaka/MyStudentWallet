@@ -7,6 +7,7 @@ import { versUnites, DEVISES_COURANTES } from './money.js';
 import { esc, $, $$, toast } from './ui.js';
 import { icon } from './icons.js';
 import { ouvrirSaisie } from './saisie.js';
+import { verrouiller, surveillerArrierePlan } from './verrou.js';
 import { rendreAccueil } from './ecrans/accueil.js';
 import { rendreOperations, brancherOperations } from './ecrans/operations.js';
 import { rendreAnalyse, brancherAnalyse } from './ecrans/analyse.js';
@@ -147,6 +148,9 @@ async function lancer() {
       En navigation privée, certains navigateurs le bloquent : ouvrez l'app dans un onglet normal.</p></main>`;
     return;
   }
+  // Écran de verrouillage posé AVANT de dessiner quoi que ce soit.
+  const deverrouillage = verrouiller();
+  surveillerArrierePlan();
   surChangement(dessiner);
   window.addEventListener('hashchange', dessiner);
   matchMedia('(prefers-color-scheme: dark)').addEventListener('change', appliquerTheme);
@@ -156,6 +160,7 @@ async function lancer() {
 
   // Raccourci de l'icône (appui long sur Android) : #/accueil?ajouter=1
   if (new URLSearchParams(location.hash.split('?')[1]).has('ajouter') && etat.reglages.initialise) {
+    await deverrouillage;
     history.replaceState(null, '', '#/accueil');
     dessiner();
     ouvrirSaisie();
